@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direc script access allowd');
 
-class News extends CI_Controller
+class News extends MY_Controller
 {
 
     public function __construct()
@@ -13,34 +13,34 @@ class News extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Все новости';
-        $data['news'] = $this->news_model->getNews();
+        $this->data['title'] = 'Все новости';
+        $this->data['news'] = $this->news_model->getNews();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('news/index', $data);
+        $this->load->view('templates/header', $this->data);
+        $this->load->view('news/index', $this->data);
         $this->load->view('templates/footer');
 
     }
 
     public function view($slag = NULL)
     {
-        $data['news_item'] = $this->news_model->getNews($slag);
+        $this->data['news_item'] = $this->news_model->getNews($slag);
 
-        if(empty($data['news_item'])){
+        if(empty($this->data['news_item'])){
             show_404();
         }
 
-        $data['title'] = $data['news_item']['title'];
-        $data['content'] = $data['news_item']['text'];
+        $this->data['title'] = $this->data['news_item']['title'];
+        $this->data['content'] = $this->data['news_item']['text'];
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('news/view', $data);
+        $this->load->view('templates/header', $this->data);
+        $this->load->view('news/view', $this->data);
         $this->load->view('templates/footer');
     }
 
     public function create()
     {
-        $data['title'] = "Добавить новость";
+        $this->data['title'] = "Добавить новость";
 
         if($this->input->post('slag') && $this->input->post('title') && $this->input->post('text'))
         {
@@ -50,30 +50,30 @@ class News extends CI_Controller
 
             if ($this->news_model->setNews($slag,$title,$text)) 
             {
-                $this->load->view('templates/header', $data);
-                $this->load->view('news/success', $data);
+                $this->load->view('templates/header', $this->data);
+                $this->load->view('news/success', $this->data);
                 $this->load->view('templates/footer');
             }
         }
 
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('news/create', $data);
+        $this->load->view('templates/header', $this->data);
+        $this->load->view('news/create', $this->data);
         $this->load->view('templates/footer');
     }
 
     public function edit($slag = NULL)
     {
-        $data['news_item'] = $this->news_model->getNews($slag);
+        $this->data['news_item'] = $this->news_model->getNews($slag);
 
-        $data['title_news'] = $data['news_item']['title'];
-        $data['content_news'] = $data['news_item']['text'];
-        $data['slag_news'] = $data['news_item']['slag'];
+        $this->data['title_news'] = $this->data['news_item']['title'];
+        $this->data['content_news'] = $this->data['news_item']['text'];
+        $this->data['slag_news'] = $this->data['news_item']['slag'];
 
-        $data['title'] = "Редоктировать " .$data['news_item']['title'];
+        $this->data['title'] = "Редоктировать " .$this->data['news_item']['title'];
 /*
 
-        if(empty($data['news_item'])){
+        if(empty($this->data['news_item'])){
             show_404();
         }
 */
@@ -89,29 +89,29 @@ class News extends CI_Controller
             }
         }
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('news/edit', $data);
+        $this->load->view('templates/header', $this->data);
+        $this->load->view('news/edit', $this->data);
         $this->load->view('templates/footer');
     }
 
     public function delete($slag = NULL)
     {
-        $data['news'] = $this->news_model->getNews($slag);
+        $this->data['news_delete'] = $this->news_model->getNews($slag);
 
-        if(empty($data['news'])){
+        if(empty($this->data['news_delete'])){
             show_404();
         }
 
-        $data['title'] = "удалить новость";
-        $data['result'] = "Ошибка удаления". $data['news']['title'];
+        $this->data['title'] = "удалить новость";
+        $this->data['result'] = "Ошибка удаления". $this->data['news_delete']['title'];
 
         if($this->news_model->deleteNews($slag)) 
         {
-            $data['result'] = $data['news']['title']." Успешно удалена";
+            $this->data['result'] = $this->data['news_delete']['title']." Успешно удалена";
         }
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('news/delete', $data);
+        $this->load->view('templates/header', $this->data);
+        $this->load->view('news/delete', $this->data);
         $this->load->view('templates/footer');
     }
 }
