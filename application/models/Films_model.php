@@ -7,6 +7,20 @@ class Films_model extends CI_Model
         $this->load->database();
     }
 
+public function getFilms($slag = FALSE, $limit, $type = 1){
+    if($slag === FALSE){
+        $query = $this->db
+            ->where('category_id', $type)
+            ->order_by('add_date', 'desc')
+            ->limit($limit)
+            ->get('movie');
+        return $query->result_array();
+    }
+
+    $query = $this->db->get_where('movie', array('slag'=>$slag));
+    return $query->row_array();
+}
+
     public function getFilmsByRating($limit)
     {
         $query = $this->db
