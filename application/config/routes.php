@@ -60,7 +60,7 @@ $route['news/edit'] = 'news/edit';
 $route['news/delete'] = 'news/delete';
 $route['news/(:any)'] = 'news/view/$1';
 
-$route['movie'] = 'movie';
+$route['type'] = 'type';
 $route['movie/create'] = 'movie/create';
 $route['movie/edit'] = 'movie/edit';
 $route['movie/delete'] = 'movie/delete';

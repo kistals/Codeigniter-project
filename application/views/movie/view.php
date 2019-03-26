@@ -2,8 +2,7 @@
           <hr>
 
           <div class="embed-responsive embed-responsive-16by9">
-            <!--iframe class="embed-responsive-item" src="https://www.youtube.com/embed/R5KHoE_8dgo?showinfo=0" frameborder="0" allowfullscreen></iframe-->
-            <img src="<?=$poster;?>" alt="">
+            <iframe class="embed-responsive-item" src="<?=$player_code;?>" frameborder="0" allowfullscreen></iframe>
           </div>
           <div class="well info-block text-center">
             Год: <span class="badge"><?=$year;?></span>

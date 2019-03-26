@@ -62,8 +62,8 @@
               
               <ul class="nav nav-pills">
                 <li class="active"> <a href="index.html">Главная</a> </li>
-                <li> <a href="films.html">Фильмы</a> </li>
-                <li> <a href="#">Сериалы</a> </li>
+                <li> <a href="/movie/type/films">Фильмы</a> </li>
+                <li> <a href="/movie/type/serials/">Сериалы</a> </li>
                 <li> <a href="rating.html">Рейтинг фильмов</a> </li>
                 <li> <a href="contact.html">Контакты</a> </li>
 

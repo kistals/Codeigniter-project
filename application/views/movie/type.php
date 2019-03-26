@@ -1,7 +1,8 @@
-<h1>Фильмы</h1>
+<h1><?=$title;?></h1>
 <hr>
-<a href="create">Добавить фильм</a>
-<?php foreach ($movie as $key => $value): ?>
+<a href="create">Добавить фильм</a><br>
+
+<?php foreach ($movie_data as $key => $value): ?>
     <div class="row">
             <div class="well clearfix">
               <div class="col-lg-3 col-md-2 text-center">

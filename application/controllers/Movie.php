@@ -9,31 +9,51 @@ class Movie extends MY_Controller{
         $this->load->model('films_model');
     }
 
-    public function index()
+    public function type($slag = NULL)
     {
-        $this->data['title'] = 'Все Фильмы';
-        $this->data['movie'] = $this->films_model->getMovie();
+        $this->data['movie_data'] = null;
 
+        if($slag=="films"){
+            $this->data['title'] = "Фильмы";
+            $this->data['movie_data'] = $this->films_model->getFilms(false, 10, 1);
+        }
+
+        if($slag=="serials"){
+            $this->data['title'] = "Сериалы";
+            $this->data['movie_data'] = $this->films_model->getFilms(false, 10, 2);
+        }
+
+
+        if($this->data['movie_data'] == null)
+        {
+            show_404();
+        }
+
+        /*  $this->data['title'] = 'Все Фильмы';
+            $this->data['movie'] = $this->films_model->getMovie();
+        */
         $this->load->view('templates/header', $this->data);
-        $this->load->view('movie/index', $this->data);
+        $this->load->view('movie/type', $this->data);
         $this->load->view('templates/footer');
     }
 
     public function view($slag = NULL)
     {
-        $this->data['movie_item'] = $this->films_model->getMovie($slag);
+        $movie_slag = $this->films_model->getFilms($slag, false, false);
 
-        if(empty($this->data['movie_item']))
+
+        if(empty($movie_slag))
         {
             show_404();
         }
 
-        $this->data['title'] = $this->data['movie_item']['name'];
-        $this->data['name'] = $this->data['movie_item']['name'];
-        $this->data['descriptions'] = $this->data['movie_item']['descriptions'];
-        $this->data['year'] = $this->data['movie_item']['year'];
-        $this->data['poster'] = $this->data['movie_item']['poster'];
-        $this->data['rating'] = $this->data['movie_item']['rating'];
+        $this->data['title'] = $movie_slag['name'];
+        $this->data['name'] = $movie_slag['name'];
+        $this->data['descriptions'] = $movie_slag['descriptions'];
+        $this->data['player_code'] = $movie_slag['player_code'];
+        $this->data['year'] = $movie_slag['year'];
+        $this->data['poster'] = $movie_slag['poster'];
+        $this->data['rating'] = $movie_slag['rating'];
 
 
         $this->data['movie'] = $this->films_model->getMovie();
