@@ -59,3 +59,9 @@ $route['news/create'] = 'news/create';
 $route['news/edit'] = 'news/edit';
 $route['news/delete'] = 'news/delete';
 $route['news/(:any)'] = 'news/view/$1';
+
+$route['movie'] = 'movie';
+$route['movie/create'] = 'movie/create';
+$route['movie/edit'] = 'movie/edit';
+$route['movie/delete'] = 'movie/delete';
+$route['movie/(:any)'] = 'movie/view/$1';
