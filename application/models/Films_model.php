@@ -75,4 +75,14 @@ class Films_model extends CI_Model
 
         return $query->result_array();
     }
+
+    public function getMoviesOnePage($row_count, $offset, $type = 1)
+    {
+        $query = $this->db
+            ->where('category_id', $type)
+            ->order_by('add_date', 'desc')
+            ->get('movie', $row_count, $offset);
+
+        return $query->result_array();
+    }
 }

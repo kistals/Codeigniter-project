@@ -54,14 +54,20 @@ $route['default_controller'] = 'main';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+
 $route['news'] = 'news';
 $route['news/create'] = 'news/create';
 $route['news/edit'] = 'news/edit';
 $route['news/delete'] = 'news/delete';
 $route['news/(:any)'] = 'news/view/$1';
 
+
 $route['type'] = 'type';
 $route['movie/create'] = 'movie/create';
 $route['movie/edit'] = 'movie/edit';
 $route['movie/delete'] = 'movie/delete';
 $route['movie/(:any)'] = 'movie/view/$1';
+
+
+$route['movie/type/films'] = 'movie/type/films/$1';
+$route['movie/type/serials'] = 'movie/type/serials/$1';

@@ -1,6 +1,6 @@
 <h1><?=$title;?></h1>
 <hr>
-<a href="create">Добавить фильм</a><br>
+<a href="/movie/create">Добавить фильм</a><br>
 
 <?php foreach ($movie_data as $key => $value): ?>
     <div class="row">
@@ -17,12 +17,14 @@
               </div>
               
               <div class="col-lg-12 col-md-12">
-                <a href="view/<?php echo $value['slag']; ?>" class="btn btn-lg btn-warning pull-right">подробнее</a>
-                <a href="edit/<?php echo $value['slag']; ?>" class="btn btn-lg btn-warning pull-right">редактировать</a>
-                <a href="delete/<?php echo $value['slag']; ?>" class="btn btn-lg btn-warning pull-right">удалить</a>
+                <a href="/movie/view/<?php echo $value['slag']; ?>" class="btn btn-lg btn-warning pull-right">подробнее</a>
+                <a href="/movie/edit/<?php echo $value['slag']; ?>" class="btn btn-lg btn-warning pull-right">редактировать</a>
+                <a href="/movie/delete/<?php echo $value['slag']; ?>" class="btn btn-lg btn-warning pull-right">удалить</a>
               </div>
 
             </div>
 
           </div>
 <?php endforeach ?>
+
+<?=$pagination;?>
