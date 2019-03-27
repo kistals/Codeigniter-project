@@ -46,6 +46,7 @@
             </div>
 
             
+
             <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
               
               <span class="sr-only">Toggle navigation</span>
@@ -61,11 +62,11 @@
             <div id="navbarCollapse" class="collapse navbar-collapse navbar-right">
               
               <ul class="nav nav-pills">
-                <li class="active"> <a href="index.html">Главная</a> </li>
-                <li> <a href="/movie/type/films">Фильмы</a> </li>
-                <li> <a href="/movie/type/serials/">Сериалы</a> </li>
-                <li> <a href="rating.html">Рейтинг фильмов</a> </li>
-                <li> <a href="contact.html">Контакты</a> </li>
+                <li <?php echo show_avtive_menu(0);?> > <a href="/">Главная</a> </li>
+                <li <?php echo show_avtive_menu('films');?> > <a href="/movie/type/films">Фильмы</a> </li>
+                <li <?php echo show_avtive_menu('serials');?> > <a href="/movie/type/serials/">Сериалы</a> </li>
+                <li <?php echo show_avtive_menu('rating');?>> <a href="/rating/">Рейтинг фильмов</a> </li>
+                <li <?php echo show_avtive_menu('contact');?>> <a href="/contact/">Контакты</a> </li>
 
               </ul>
 
