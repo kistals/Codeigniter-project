@@ -22,18 +22,25 @@
             <div class="panel-heading"><div class="sidebar-header">Вход</div></div>
             <div class="panel-body">
 
-              <form role="form">
+              <?php if(!$this->dx_auth->is_logged_in()) {?>
+              <form role="form" method="POST" action="/auth/login/">
                 <div class="form-group">
-                  <input type="text"  class="form-control input-lg" placeholder="Логин">
+                  <input type="text"  class="form-control input-lg" placeholder="Логин" name="username">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control input-lg" placeholder="Пароль">
+                  <input type="password" class="form-control input-lg" placeholder="Пароль" name="password">
                 </div>
 
                 <button type="submit" class="btn btn-warning pull-right">вход</button>
 
               </form>
 
+              <?php }else{?>
+
+              Здравствуйте, <?php $this->dx_auth->get_username();?>
+
+              <a href="/auth/logout/" class="btn btn-warning pull-right">выход</a>
+              <?php }?>
             </div>
           </div>  
 

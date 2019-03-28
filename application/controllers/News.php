@@ -40,6 +40,15 @@ class News extends MY_Controller
 
     public function create()
     {
+        if (!$this->dx_auth->is_admin()) {
+            show_404();
+            
+            /* Redirect
+            $this->load->helper('url_gelper');
+            redirect('/', 'http://mylerning.devs');
+            */
+        }
+
         $this->data['title'] = "Добавить новость";
 
         if($this->input->post('slag') && $this->input->post('title') && $this->input->post('text'))
@@ -64,6 +73,9 @@ class News extends MY_Controller
 
     public function edit($slag = NULL)
     {
+        if (!$this->dx_auth->is_admin()) {
+            show_404();
+        }
         $this->data['news_item'] = $this->news_model->getNews($slag);
 
         $this->data['title_news'] = $this->data['news_item']['title'];
@@ -96,6 +108,9 @@ class News extends MY_Controller
 
     public function delete($slag = NULL)
     {
+        if (!$this->dx_auth->is_admin()) {
+            show_404();
+        }
         $this->data['news_delete'] = $this->news_model->getNews($slag);
 
         if(empty($this->data['news_delete'])){

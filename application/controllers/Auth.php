@@ -155,7 +155,7 @@ class Auth extends CI_Controller
 			else
 			{
 				// Load registration page
-				$this->load->view('Auth/register_form');
+				$this->load->view('auth/register_form');
 			}
 		}
 		elseif ( ! $this->dx_auth->allow_registration)
