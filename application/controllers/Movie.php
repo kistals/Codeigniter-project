@@ -76,11 +76,15 @@ class Movie extends MY_Controller{
     {
         $movie_slag = $this->films_model->getFilms($slag, false, false);
 
-
         if(empty($movie_slag))
         {
             show_404();
         }
+
+        $this->load->model('comments_model');
+        $this->data['comments'] = $this->comments_model->getComments($movie_slag['id'], 100);
+        
+
 
         $this->data['title'] = $movie_slag['name'];
         $this->data['name'] = $movie_slag['name'];

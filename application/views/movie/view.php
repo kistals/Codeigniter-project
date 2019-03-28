@@ -23,10 +23,12 @@
 
           <h2>Отзывы об <?=$name;?></h2>
           <hr>
-
+        <?php foreach ($comments as $key => $value): ?>
           <div class="panel panel-info">
-            <div class="panel-heading"><i class="glyphicon glyphicon-user"></i> <span>Сергей</span> </div>
+            <div class="panel-heading"><i class="glyphicon glyphicon-user"></i> <span><?php echo getUserNameById($value['user_id'])->username; ?></span> </div>
             <div class="panel-body">
-              Отличный фильм, 3 часа пролетели не заметно.
+                <?php echo $value['comments_text']; ?>
             </div>
           </div>
+
+        <?php endforeach ?>
