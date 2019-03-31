@@ -62,11 +62,11 @@
             <div id="navbarCollapse" class="collapse navbar-collapse navbar-right">
               
               <ul class="nav nav-pills">
-                <li <?php echo show_avtive_menu(0);?> > <a href="/">Главная</a> </li>
-                <li <?php echo show_avtive_menu('films');?> > <a href="/movie/type/films">Фильмы</a> </li>
-                <li <?php echo show_avtive_menu('serials');?> > <a href="/movie/type/serials/">Сериалы</a> </li>
-                <li <?php echo show_avtive_menu('rating');?>> <a href="/rating/">Рейтинг фильмов</a> </li>
-                <li <?php echo show_avtive_menu('contact');?>> <a href="/contact/">Контакты</a> </li>
+                  <li <?php echo show_active_menu(0,0); ?>> <a href="/">Главная</a> </li>
+                  <li <?php echo show_active_menu('films', $category); ?>> <a href="/movie/type/films">Фильмы</a> </li>
+                  <li <?php echo show_active_menu('serials', $category); ?>> <a href="/movie/type/serials">Сериалы</a> </li>
+                  <li <?php echo show_active_menu('rating', 0); ?>> <a href="/rating">Рейтинг фильмов</a> </li>
+                  <li <?php echo show_active_menu('contact', 0); ?>> <a href="/contact">Контакты</a> </li>
 
               </ul>
 

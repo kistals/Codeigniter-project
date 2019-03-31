@@ -93,6 +93,7 @@ class Movie extends MY_Controller{
         $this->data['year'] = $movie_slag['year'];
         $this->data['poster'] = $movie_slag['poster'];
         $this->data['rating'] = $movie_slag['rating'];
+        $this->data['category'] = $movie_slag['category_id'];
 
 
         $this->data['movie'] = $this->films_model->getMovie();
