@@ -22,7 +22,7 @@ class Search extends MY_Controller
         }
 
         $this->load->view('templates/header', $this->data);
-        $this->load->view('search', $this->data);
+        $this->load->view('main/search', $this->data);
         $this->load->view('templates/footer');
     }
 }

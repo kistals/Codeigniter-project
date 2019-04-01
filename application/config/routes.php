@@ -68,8 +68,10 @@ $route['movie/edit'] = 'movie/edit';
 $route['movie/delete'] = 'movie/delete';
 $route['movie/(:any)'] = 'movie/view/$1';
 
-
 $route['movie/type/films'] = 'movie/type/films/$1';
 $route['movie/type/serials'] = 'movie/type/serials/$1';
 
 $route['search'] = 'search';
+
+$route['rating'] = 'main/rating';
+$route['rating/(:any)'] = 'main/rating/$1';

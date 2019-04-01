@@ -85,4 +85,13 @@ class Films_model extends CI_Model
 
         return $query->result_array();
     }
+
+    public function getMoviesOnPageByRating($row_count, $offset) {
+        $query = $this->db
+            ->where('category_id', 1)
+            ->where('rating>', 0)
+            ->order_by('rating', 'desc')
+            ->get('movie', $row_count, $offset);
+        return $query->result_array();
+    }
 }
