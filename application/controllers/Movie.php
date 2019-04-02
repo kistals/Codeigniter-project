@@ -145,13 +145,14 @@ class Movie extends MY_Controller{
 
         if($this->input->post('slag') && $this->input->post('name') && $this->input->post('descriptions') && $this->input->post('year') && $this->input->post('rating') )
         {
+            $id = $this->data['movie_item']['id'];
             $slag = $this->input->post('slag');
             $name = $this->input->post('name');
             $descriptions = $this->input->post('descriptions');
             $year = $this->input->post('year');
             $rating = $this->input->post('rating');
 
-            if($this->films_model->updateMovie($slag, $name, $descriptions, $year, $rating))
+            if($this->films_model->updateMovie($id, $slag, $name, $descriptions, $year, $rating))
             {
                 echo 'Видео успешно отредоктировано';
             }
@@ -183,4 +184,30 @@ class Movie extends MY_Controller{
         $this->load->view('templates/footer');
     }
 
+    public function comment()
+    {
+        if(!$this->dx_auth->is_logged_in())
+        {
+            show_404();
+        }
+
+        $this->data['title'] = 'Добавить комментарий';
+
+        if($this->input->post('user_id') && $this->input->pist('movie_id') && $this->input->pist('comment_text'))
+        {
+            $user_id = $this->input->post('user_id');
+            $movie_id = $this->input->pist('movie_id');
+            $comments_text = $this->input->pist('comments_text');
+
+            if($this->films_model->setComments($user_id,$movie_id, $comments_text))
+            {
+                $this->data['title'] = 'Комментьарий добавлен!';
+                $this->load->view('movie/commentCreated');
+            }
+        }
+        else
+            {
+                $this->load->view('movie/commentError', $this->data);
+            }
+    }
 }

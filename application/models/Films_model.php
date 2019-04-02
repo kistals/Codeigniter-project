@@ -31,9 +31,10 @@ class Films_model extends CI_Model
         return $this->db->insert( 'movie', $data );
     }
 
-    public function updateMovie( $slag, $name, $descriptions, $year, $rating )
+    public function updateMovie($id, $slag, $name, $descriptions, $year, $rating )
     {
         $data = array(
+            'id' => $id,
             'name' => $name,
             'slag' => $slag,
             'descriptions' => $descriptions,
@@ -93,5 +94,15 @@ class Films_model extends CI_Model
             ->order_by('rating', 'desc')
             ->get('movie', $row_count, $offset);
         return $query->result_array();
+    }
+
+    public function setComments($user_id, $movie_id, $comment_text)
+    {
+        $data = array(
+            'user_id' => $user_id,
+            'movie_id' => $movie_id,
+            'comment_text' => $comment_text
+        );
+        return $this->db->insert('comments', $data);
     }
 }
