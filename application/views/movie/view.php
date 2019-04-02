@@ -40,10 +40,10 @@
 
             <form action="/movie/comment/" method="post">
                 <input class="hidden" type="input" name="user_id" value="<?php echo $this->dx_auth->get_user_id(); ?>">
-                <input class="hidden" type="input" name="movie_id" value="<?php  ?>">
+                <input class="hidden" type="input" name="movie_id" value="<?php echo $id; ?>">
 
                 <div class="form-group">
-                    <textarea class="form-control" name="comment_text" placeholder="ваш комментарий"></textarea>
+                    <textarea class="form-control" name="comments_text" placeholder="ваш комментарий"></textarea>
                 </div>
 
                 <button class="btn btn-lg btn-warning pull-right">отправить</button>

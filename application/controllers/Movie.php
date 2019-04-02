@@ -7,6 +7,8 @@ class Movie extends MY_Controller{
     {
         parent::__construct();
         $this->load->model('films_model');
+        $this->load->helper('form');
+        $this->load->helper('url');
     }
 
     public function type($slag = NULL)
@@ -193,11 +195,11 @@ class Movie extends MY_Controller{
 
         $this->data['title'] = 'Добавить комментарий';
 
-        if($this->input->post('user_id') && $this->input->pist('movie_id') && $this->input->pist('comment_text'))
+        if($this->input->post('user_id') && $this->input->post('movie_id') && $this->input->post('comment_text'))
         {
             $user_id = $this->input->post('user_id');
-            $movie_id = $this->input->pist('movie_id');
-            $comments_text = $this->input->pist('comments_text');
+            $movie_id = $this->input->post('movie_id');
+            $comments_text = $this->input->post('comments_text');
 
             if($this->films_model->setComments($user_id,$movie_id, $comments_text))
             {
