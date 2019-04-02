@@ -72,6 +72,7 @@ $route['movie/type/films'] = 'movie/type/films/$1';
 $route['movie/type/serials'] = 'movie/type/serials/$1';
 
 $route['search'] = 'search';
+$route['contacts'] = 'main/contacts';
 
 $route['rating'] = 'main/rating';
 $route['rating/(:any)'] = 'main/rating/$1';
