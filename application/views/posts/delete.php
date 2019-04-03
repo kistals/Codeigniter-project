@@ -1,1 +1,1 @@
-<?php
+<p><?php echo $result; ?></p><br><br><br><a href="/posts/">Все посты</a>

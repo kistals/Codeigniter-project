@@ -21,4 +21,31 @@ class Posts_model extends CI_Model
 
     }
 
+    public function setPosts($slag, $title, $text)
+    {
+        $data = array(
+            'title' => $title,
+            'text' => $text,
+            'slag' => $slag
+            );
+
+        return $this->db->insert('posts', $data);
+    }
+
+    public  function updatePosts($slag, $title, $text)
+    {
+        $data = array(
+            'title' => $title,
+            'text' => $text,
+            'slag' => $slag
+        );
+
+        return $this->db->update('posts', $data, array('slag' => $slag));
+    }
+
+    public function deletePosts($slag)
+    {
+        return $this->db->delete('posts', array('slag' => $slag));
+    }
+
 }

@@ -17,9 +17,10 @@
               </div>
               
               <div class="col-lg-12 col-md-12">
-                <a href="/movie/view/<?php echo $value['slag']; ?>" class="btn btn-lg btn-warning pull-right">подробнее</a>
-                <a href="/movie/edit/<?php echo $value['slag']; ?>" class="btn btn-lg btn-warning pull-right">редактировать</a>
-                <a href="/movie/delete/<?php echo $value['slag']; ?>" class="btn btn-lg btn-warning pull-right">удалить</a>
+                <a href="/movie/view/<?php echo $value['slag']; ?>" class="btn btn-lg btn-warning pull-right">подробнее</a><?php if($this->dx_auth->is_admin()) { ?>
+                      <a href="/movie/edit/<?php echo $value['slag']; ?>" class="btn btn-lg btn-warning pull-right">редактировать</a>
+                      <a href="/movie/delete/<?php echo $value['slag']; ?>" class="btn btn-lg btn-warning pull-right">удалить</a><br>
+                  <?php   } ?>
               </div>
 
             </div>

@@ -70,6 +70,7 @@ $route['movie/type/films'] = 'movie/type/films/$1';
 $route['movie/type/serials'] = 'movie/type/serials/$1';
 
 $route['posts'] = 'posts';
+$route['posts/create'] = 'posts/create';
 $route['posts/(:any)'] = 'posts/view/$1';
 $route['posts/edit'] = 'posts/edit';
 $route['posts/delete'] = 'posts/delete';
