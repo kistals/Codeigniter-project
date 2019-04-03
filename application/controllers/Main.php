@@ -22,6 +22,9 @@ class Main extends MY_Controller
         $this->load->model('films_model');
         $this->data['serials'] = $this->films_model->getFilms(false, 4, 2);
 
+        $this->load->model('posts_model');
+        $this->data['posts'] = $this->posts_model->getPosts(false);
+
         $this->load->view('templates/header', $this->data);
         $this->load->view('main/index', $this->data);
         $this->load->view('templates/footer');
