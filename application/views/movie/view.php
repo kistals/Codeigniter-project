@@ -1,6 +1,6 @@
 <h1><?php echo $title." "; ?>
     <?php if($this->dx_auth->is_admin()) { ?>
-        <a href="/movies/edit/<?php echo $slag; ?>"><button type="button" class="btn btn-default">
+        <a href="/movie/edit/<?php echo $slag; ?>"><button type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></a>
     <?php   } ?>
 </h1>

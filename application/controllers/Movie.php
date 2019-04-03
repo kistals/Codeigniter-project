@@ -131,17 +131,25 @@ class Movie extends MY_Controller{
 
         $this->data['movie_item'] = $this->films_model->getMovie($slag);
 
-        //$this->data['title'] = $this->data['movie_item']['name'];
-        $this->data['name_item'] = $this->data['movie_item']['name'];
-        $this->data['slag_item'] = $this->data['movie_item']['slag'];
-        $this->data['descriptions_item'] = $this->data['movie_item']['descriptions'];
-        $this->data['year_item'] = $this->data['movie_item']['year'];
-        $this->data['poster_item'] = $this->data['movie_item']['poster'];
-        $this->data['rating_item'] = $this->data['movie_item']['rating'];
+        if (empty($this->data['movie_item'])) {
+            show_404();
+        }
+
+        $this->data['id_movie'] = $this->data['movie_item']['id'];
+        $this->data['slag_movie'] = $this->data['movie_item']['slag'];
+        $this->data['name_movie'] = $this->data['movie_item']['name'];
+        $this->data['descriptions_movie'] = $this->data['movie_item']['descriptions'];
+        $this->data['year_movie'] = $this->data['movie_item']['year'];
+        $this->data['rating_movie'] = $this->data['movie_item']['rating'];
+        $this->data['poster_movie'] = $this->data['movie_item']['poster'];
+        $this->data['player_code_movie'] = $this->data['movie_item']['player_code'];
+        $this->data['director_movie'] = $this->data['movie_item']['director'];
+        $this->data['add_date_movie'] = $this->data['movie_item']['add_date'];
+        $this->data['category_id_movie'] = $this->data['movie_item']['category_id'];
         
         $this->data['title'] = "Редоктировать " .$this->data['movie_item']['name'];
 
-        if($this->input->post('slag') && $this->input->post('name') && $this->input->post('descriptions') && $this->input->post('year') && $this->input->post('rating') )
+        if($this->input->post('slag') && $this->input->post('name') && $this->input->post('descriptions') && $this->input->post('year') && $this->input->post('rating') && $this->input->post('poster') && $this->input->post('player_code') && $this->input->post('director') && $this->input->post('add_date') && $this->input->post('category_id') )
         {
             $id = $this->data['movie_item']['id'];
             $slag = $this->input->post('slag');
@@ -149,15 +157,26 @@ class Movie extends MY_Controller{
             $descriptions = $this->input->post('descriptions');
             $year = $this->input->post('year');
             $rating = $this->input->post('rating');
+            $poster = $this->input->post('poster');
+            $player_code = $this->input->post('player_code');
+            $director = $this->input->post('director');
+            $add_date = $this->input->post('add_date');
+            $category_id = $this->input->post('category_id');
 
-            if($this->films_model->updateMovie($id, $slag, $name, $descriptions, $year, $rating))
+            if($this->films_model->updateMovie($id, $slag, $name, $descriptions, $year, $rating, $poster, $player_code, $director, $add_date, $category_id))
             {
-                echo 'Видео успешно отредоктировано';
+                $this->data['title'] = 'Успешно обновлено';
+                $this->load->view('templates/header', $this->data);
+                $this->load->view('movie/edited');
+                $this->load->view('templates/footer');
             }
-        }
-        $this->load->view('templates/header', $this->data);
-        $this->load->view('movie/edit', $this->data);
-        $this->load->view('templates/footer');
+
+        } else
+            {
+                $this->load->view('templates/header', $this->data);
+                $this->load->view('movie/edit', $this->data);
+                $this->load->view('templates/footer');
+            }
     }
 
     public function delete($slag = NULL)
