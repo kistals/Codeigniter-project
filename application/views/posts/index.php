@@ -5,8 +5,16 @@
 <?php   } ?>
 
 <?php foreach ($posts as $key => $value): ?>
-    <p><a href="view/<?php echo $value['slag']; ?>"><?php echo $value['title']; ?></a>
+
+    <a href="/posts/view/<?=$value['slag']?>"><h3><?=$value['title']?></h3></a>
+    <hr>
+    <p>
+        <?=$value['text']?>
+    </p>
+    <a href="/posts/view/<?=$value['slag']?>" class="btn btn-warning pull-right">читать</a>
     <?php if($this->dx_auth->is_admin()) { ?>
-        | <a href="edit/<?php echo $value['slag']; ?>">edit</a> | <a href="delete/<?php echo $value['slag']; ?>">delete</a></p>
+        | <a href="edit/<?php echo $value['slag']; ?>" class="btn btn-warning pull-right">edit</a> | <a href="delete/<?php echo $value['slag']; ?>" class="btn btn-warning pull-right">delete</a></p>
     <?php   } ?>
+
+    <div class="margin-8"></div>
 <?php endforeach ?>

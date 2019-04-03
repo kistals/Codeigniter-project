@@ -39,12 +39,12 @@
           <?php foreach ($posts as $key => $value): ?>
 
 
-              <a href="<?=$value['slag']?>"><h3><?=$value['title']?></h3></a>
+              <a href="/posts/view/<?=$value['slag']?>"><h3><?=$value['title']?></h3></a>
               <hr>
               <p>
                   <?=$value['text']?>
               </p>
-              <a href="<?=$value['slag']?>" class="btn btn-warning pull-right">читать</a>
+              <a href="/posts/view/<?=$value['slag']?>" class="btn btn-warning pull-right">читать</a>
 
               <div class="margin-8"></div>
 

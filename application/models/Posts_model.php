@@ -20,4 +20,5 @@ class Posts_model extends CI_Model
         return $query->row_array();
 
     }
+
 }
