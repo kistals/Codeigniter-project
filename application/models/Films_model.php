@@ -99,7 +99,7 @@ class Films_model extends CI_Model
     public function setComments($user_id, $movie_id, $comments_text)
     {
         $data = array(
-            //'user_id' => $user_id,
+            'user_id' => $user_id,
             'movie_id' => $movie_id,
             'comments_text' => $comments_text
         );

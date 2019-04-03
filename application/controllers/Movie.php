@@ -195,9 +195,9 @@ class Movie extends MY_Controller{
 
             $user_id = $this->input->post('user_id');
             $movie_id = $this->input->post('movie_id');
-            $comments_text = $this->input->post('comment_text');
+            $comments_text = $this->input->post('comments_text');
 
-            if($this->Films_model->setComments($user_id, $movie_id, $comments_text)) {
+            if($this->films_model->setComments($user_id, $movie_id, $comments_text)) {
 
                 $this->data['title'] = 'Комментарий добавлен!';
                 $this->load->view('movie/commentCreated');

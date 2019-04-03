@@ -34,7 +34,7 @@
     <div class="panel panel-info">
         <div class="panel-heading"><i class="glyphicon glyphicon-user"></i> <span><?php echo getUserNameByID($value['user_id'])->username; ?></span> </div>
         <div class="panel-body">
-            <?php echo $value['comment_text']; ?>
+            <?php echo $value['comments_text']; ?>
         </div>
     </div>
 <?php endforeach ?>
@@ -44,12 +44,12 @@
     <?php  $this->session->set_flashdata('redirect', $this->uri->uri_string()); ?>
 
 
-    <form action="/movies/comment/" method="post">
+    <form action="/movie/comment/" method="post">
         <input class="hidden" type="input" name="user_id" value="<?php echo $this->dx_auth->get_user_id(); ?>">
         <input class="hidden" type="input" name="movie_id" value="<?php echo $movie_id; ?>">
 
         <div class="form-group">
-            <textarea class="form-control" name="comment_text" placeholder="ваш комментарий"></textarea>
+            <textarea class="form-control" name="comments_text" placeholder="ваш комментарий"></textarea>
         </div>
 
         <button class="btn btn-lg btn-warning pull-right">отправить</button>
