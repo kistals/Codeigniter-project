@@ -83,22 +83,18 @@ class Movie extends MY_Controller{
             show_404();
         }
 
-        $this->load->model('comments_model');
-        $this->data['comments'] = $this->comments_model->getComments($movie_slag['id'], 100);
-        
+        $this->load->model('Comments_model');
+        $this->data['comments'] = $this->Comments_model->getComments($movie_slag['id'], 100);
 
-
+        $this->data['movie_id'] = $movie_slag['id'];
+        $this->data['slag'] = $movie_slag['slag'];
         $this->data['title'] = $movie_slag['name'];
-        $this->data['name'] = $movie_slag['name'];
-        $this->data['descriptions'] = $movie_slag['descriptions'];
         $this->data['player_code'] = $movie_slag['player_code'];
         $this->data['year'] = $movie_slag['year'];
-        $this->data['poster'] = $movie_slag['poster'];
         $this->data['rating'] = $movie_slag['rating'];
+        $this->data['descriptions_movie'] = $movie_slag['descriptions'];
+        $this->data['director'] = $movie_slag['director'];
         $this->data['category'] = $movie_slag['category_id'];
-
-
-        $this->data['movie'] = $this->films_model->getMovie();
 
         $this->load->view('templates/header', $this->data);
         $this->load->view('movie/view', $this->data);
@@ -195,21 +191,20 @@ class Movie extends MY_Controller{
 
         $this->data['title'] = 'Добавить комментарий';
 
-        if($this->input->post('user_id') && $this->input->post('movie_id') && $this->input->post('comment_text'))
-        {
+        if($this->input->post('user_id') && $this->input->post('movie_id') && $this->input->post('comments_text')) {
+
             $user_id = $this->input->post('user_id');
             $movie_id = $this->input->post('movie_id');
-            $comments_text = $this->input->post('comments_text');
+            $comments_text = $this->input->post('comment_text');
 
-            if($this->films_model->setComments($user_id,$movie_id, $comments_text))
-            {
-                $this->data['title'] = 'Комментьарий добавлен!';
+            if($this->Films_model->setComments($user_id, $movie_id, $comments_text)) {
+
+                $this->data['title'] = 'Комментарий добавлен!';
                 $this->load->view('movie/commentCreated');
             }
         }
-        else
-            {
-                $this->load->view('movie/commentError', $this->data);
-            }
+        else{
+            $this->load->view('movie/commentError', $this->data);
+        }
     }
 }
