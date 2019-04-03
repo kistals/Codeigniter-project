@@ -95,6 +95,7 @@ class Auth extends CI_Controller
 					$data['show_captcha'] = FALSE;
 					
 					// Load login page view
+
 					$this->load->view($this->dx_auth->login_view, $data);
 				}
 			}
