@@ -78,7 +78,7 @@ $route['posts/delete'] = 'posts/delete';
 $route['rating'] = 'main/rating';
 $route['rating/(:any)'] = 'main/rating/$1';
 
-$route['contact'] = 'main/contact';
+$route['contacts'] = 'main/contacts';
 
 $route['search'] = 'search';
 $route['search/(:any)'] = 'search/$1';
