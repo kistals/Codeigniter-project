@@ -15,7 +15,15 @@ class Auth extends CI_Controller
 		
 		$this->load->library('Form_validation');
 		$this->load->library('DX_Auth');
-		
+
+        $this->load->model('news_model');
+        $this->data['news'] = $this->news_model->getNews();
+
+        $this->load->model('films_model');
+        $this->data['films'] = $this->films_model->getFilmsByRating(10);
+
+        $this->data['category'] = "";
+
 		$this->load->helper('url');
 		$this->load->helper('form');
 	}
@@ -96,14 +104,18 @@ class Auth extends CI_Controller
 					
 					// Load login page view
 
+                    $this->load->view('templates/header', $this->data);
 					$this->load->view($this->dx_auth->login_view, $data);
+                    $this->load->view('templates/footer');
 				}
 			}
 		}
 		else
 		{
 			$data['auth_message'] = 'You are already logged in.';
+            $this->load->view('templates/header', $this->data);
 			$this->load->view($this->dx_auth->logged_in_view, $data);
+            $this->load->view('templates/footer');
 		}
 	}
 	
@@ -111,8 +123,10 @@ class Auth extends CI_Controller
 	{
 		$this->dx_auth->logout();
 		
-		$data['auth_message'] = 'You have been logged out.';		
+		$data['auth_message'] = 'You have been logged out.';
+        $this->load->view('templates/header', $this->data);
 		$this->load->view($this->dx_auth->logout_view, $data);
+        $this->load->view('templates/footer');
 	}
 	
 	
@@ -151,23 +165,31 @@ class Auth extends CI_Controller
 				}
 				
 				// Load registration success page
+                $this->load->view('templates/header', $this->data);
 				$this->load->view($this->dx_auth->register_success_view, $data);
+                $this->load->view('templates/footer');
 			}
 			else
 			{
 				// Load registration page
+                $this->load->view('templates/header', $this->data);
 				$this->load->view('auth/register_form');
+                $this->load->view('templates/footer');
 			}
 		}
 		elseif ( ! $this->dx_auth->allow_registration)
 		{
 			$data['auth_message'] = 'Registration has been disabled.';
+            $this->load->view('templates/header', $this->data);
 			$this->load->view($this->dx_auth->register_disabled_view, $data);
+            $this->load->view('templates/footer');
 		}
 		else
 		{
 			$data['auth_message'] = 'You have to logout first, before registering.';
+            $this->load->view('templates/header', $this->data);
 			$this->load->view($this->dx_auth->logged_in_view, $data);
+            $this->load->view('templates/footer');
 		}
 	}
 	
@@ -181,19 +203,24 @@ class Auth extends CI_Controller
 		if ($this->dx_auth->activate($username, $key)) 
 		{
 			$data['auth_message'] = 'Your account have been successfully activated. '.anchor(site_url($this->dx_auth->login_uri), 'Login');
+            $this->load->view('templates/header', $this->data);
 			$this->load->view($this->dx_auth->activate_success_view, $data);
+            $this->load->view('templates/footer');
 		}
 		else
 		{
 			$data['auth_message'] = 'The activation code you entered was incorrect. Please check your email again.';
+            $this->load->view('templates/header', $this->data);
 			$this->load->view($this->dx_auth->activate_failed_view, $data);
+            $this->load->view('templates/footer');
 		}
 	}
 	
 	function forgot_password()
 	{
 		$val = $this->form_validation;
-		
+
+        $this->data['title'] = "Восстановление пароля";
 		// Set form validation rules
 		$val->set_rules('login', 'Username or Email address', 'trim|required');
 
@@ -201,11 +228,15 @@ class Auth extends CI_Controller
 		if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login')))
 		{
 			$data['auth_message'] = 'An email has been sent to your email with instructions with how to activate your new password.';
+            $this->load->view('templates/header', $this->data);
 			$this->load->view($this->dx_auth->forgot_password_success_view, $data);
+            $this->load->view('templates/footer');
 		}
 		else
 		{
+            $this->load->view('templates/header', $this->data);
 			$this->load->view($this->dx_auth->forgot_password_view);
+            $this->load->view('templates/footer');
 		}
 	}
 	
@@ -219,12 +250,16 @@ class Auth extends CI_Controller
 		if ($this->dx_auth->reset_password($username, $key))
 		{
 			$data['auth_message'] = 'You have successfully reset you password, '.anchor(site_url($this->dx_auth->login_uri), 'Login');
+            $this->load->view('templates/header', $this->data);
 			$this->load->view($this->dx_auth->reset_password_success_view, $data);
+            $this->load->view('templates/footer');
 		}
 		else
 		{
 			$data['auth_message'] = 'Reset failed. Your username and key are incorrect. Please check your email again and follow the instructions.';
+            $this->load->view('templates/header', $this->data);
 			$this->load->view($this->dx_auth->reset_password_failed_view, $data);
+            $this->load->view('templates/footer');
 		}
 	}
 	
@@ -244,11 +279,15 @@ class Auth extends CI_Controller
 			if ($val->run() AND $this->dx_auth->change_password($val->set_value('old_password'), $val->set_value('new_password')))
 			{
 				$data['auth_message'] = 'Your password has successfully been changed.';
+                $this->load->view('templates/header', $this->data);
 				$this->load->view($this->dx_auth->change_password_success_view, $data);
+                $this->load->view('templates/footer');
 			}
 			else
 			{
+                $this->load->view('templates/header', $this->data);
 				$this->load->view($this->dx_auth->change_password_view);
+                $this->load->view('templates/footer');
 			}
 		}
 		else
@@ -276,7 +315,9 @@ class Auth extends CI_Controller
 			}
 			else
 			{
+                $this->load->view('templates/header', $this->data);
 				$this->load->view($this->dx_auth->cancel_account_view);
+                $this->load->view('templates/footer');
 			}
 		}
 		else

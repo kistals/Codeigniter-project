@@ -30,7 +30,7 @@
                       'value' => 1,
                       'checked' => set_value('remember'));
                   ?>
-                  
+
               <?php echo $this->session->flashdata('general__error'); ?>
 
               <form role="form" method="POST" action="/auth/login/">
@@ -58,7 +58,7 @@
 
               <?php }else{?>
 
-              Здравствуйте, <?php $this->dx_auth->get_username();?>
+              Здравствуйте, <?php echo $this->dx_auth->get_username();?>
 
               <a href="/auth/logout/" class="btn btn-warning pull-right">выход</a>
               <?php }?>

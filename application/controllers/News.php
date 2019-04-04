@@ -9,6 +9,8 @@ class News extends MY_Controller
     {
         parent::__construct();        
         $this->load->model('news_model');
+        $this -> load -> library('form_validation');
+        $this->load->helper('url');
     }
 
     public function index()

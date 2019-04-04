@@ -38,25 +38,25 @@ $email = array(
 <dl>
 	<dt><?php echo form_label('Username', $username['id']);?></dt>
 	<dd>
-		<?php echo form_input($username)?>
+		<?php echo form_input($username,'','class="form-control"')?>
     <?php echo form_error($username['name']); ?>
 	</dd>
 
-	<dt><?php echo form_label('Password', $password['id']);?></dt>
+	<dt><?php echo form_label('Password', $password['id'],'','class="form-control"');?></dt>
 	<dd>
-		<?php echo form_password($password)?>
+		<?php echo form_password($password,'','class="form-control"')?>
     <?php echo form_error($password['name']); ?>
 	</dd>
 
 	<dt><?php echo form_label('Confirm Password', $confirm_password['id']);?></dt>
 	<dd>
-		<?php echo form_password($confirm_password);?>
+		<?php echo form_password($confirm_password,'','class="form-control"');?>
 		<?php echo form_error($confirm_password['name']); ?>
 	</dd>
 
 	<dt><?php echo form_label('Email Address', $email['id']);?></dt>
 	<dd>
-		<?php echo form_input($email);?>
+		<?php echo form_input($email,'','class="form-control"');?>
 		<?php echo form_error($email['name']); ?>
 	</dd>
 		
@@ -87,7 +87,7 @@ $email = array(
 <?php endif; ?>
 
 	<dt></dt>
-	<dd><?php echo form_submit('register','Register');?></dd>
+	<dd><?php echo form_submit('register','Register','class="btn"');?></dd>
 </dl>
 
 <?php echo form_close()?>

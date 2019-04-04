@@ -37,13 +37,13 @@ $confirmation_code = array(
 <dl>	
 	<dt><?php echo form_label('Username', $username['id']);?></dt>
 	<dd>
-		<?php echo form_input($username)?>
+		<?php echo form_input($username,'','class="form-control"')?>
     <?php echo form_error($username['name']); ?>
 	</dd>
 
   <dt><?php echo form_label('Password', $password['id']);?></dt>
 	<dd>
-		<?php echo form_password($password)?>
+		<?php echo form_password($password,'','class="form-control"')?>
     <?php echo form_error($password['name']); ?>
 	</dd>
 
@@ -61,8 +61,15 @@ $confirmation_code = array(
 	</dd>
 
 	<dt></dt>
-	<dd><?php echo form_submit('login','Login');?></dd>
+	<dd><?php echo form_submit('login','Login','class="btn"');?></dd>
 </dl>
 
 <?php echo form_close()?>
 </fieldset>
+<?php
+
+$this->session->set_flashdata('general__error', $this->dx_auth->get_auth_error());
+$this->session->set_flashdata('username__error', form_error($username['name']));
+$this->session->set_flashdata('password__error', form_error($password['name']));
+
+?>
